@@ -1,0 +1,64 @@
+# For full config options, check the docs:
+#    docs.serverless.com
+
+service: auth-service
+
+frameworkVersion: '^3.34.0'
+
+provider:
+  name: aws # serverless provider
+  runtime: nodejs18.x
+  memorySize: 128 #
+  stage: ${opt:stage, 'dev'} #
+  region: eu-west-2
+  environment:
+    AUTH0_CLIENT_ID: ${file(secrets.json):AUTH0_CLIENT_ID}
+    AUTH0_AUDIENCE: ${file(secrets.json):AUTH0_AUDIENCE}
+    AUTH0_CLIENT_PUBLIC_KEY: ${file(secret.pem)}
+
+functions:
+  auth:
+    handler: src/handler.auth
+    description: Authenticate requests
+    cors: true
+  publicEndpoint: # For testing purposes
+    handler: src/handler.publicEndpoint
+    description: Test endpoint to test public endpoints
+    events:
+      - http:
+          path: public
+          method: post
+          cors: true
+  privateEndpoint: # For testing purposes
+    handler: src/handler.privateEndpoint
+    description: Test endpoint to test private endpoints
+    events:
+      - http:
+          path: private
+          method: post
+          authorizer: auth
+          cors: true
+
+resources:
+  Resources:
+    # This response is needed for custom authorizer failures cors support ¯\_(ツ)_/¯
+    GatewayResponse:
+      Type: 'AWS::ApiGateway::GatewayResponse'
+      Properties:
+        ResponseParameters:
+          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
+        ResponseType: EXPIRED_TOKEN
+        RestApiId:
+          Ref: 'ApiGatewayRestApi'
+        StatusCode: '401'
+    AuthFailureGatewayResponse:
+      Type: 'AWS::ApiGateway::GatewayResponse'
+      Properties:
+        ResponseParameters:
+          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
+        ResponseType: UNAUTHORIZED
+        RestApiId:
+          Ref: 'ApiGatewayRestApi'
+        StatusCode: '401'

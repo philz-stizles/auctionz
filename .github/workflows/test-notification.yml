@@ -1,0 +1,19 @@
+name: deploy-notification
+
+on:
+  # Triggers the workflow on push to main
+  push:
+    branches:
+      - main
+    # but only for any changes to notification folder or service 'notification-service/**''
+    # Being a microservice, were projects are independent, you only want to run
+    # this test when changes are made to this service, and not when changes are
+    # made to other services,
+    paths:
+      - 'notification-service/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
