@@ -1,3 +1,5 @@
+'use strict';
+
 const createError = require('http-errors');
 const httpErrorHandler = require('@middy/http-error-handler');
 const cors = require('@middy/http-cors');
@@ -34,7 +36,7 @@ const uploadAuctionPicture = async (event) => {
   };
 };
 
-module.exports.handler = uploadAuctionPicture
-  // .use(httpErrorHandler())
-  // .use(validator({ eventSchema: transpileSchema(uploadAuctionPictureSchema) }))
-  // .use(cors());
+module.exports.handler = uploadAuctionPicture;
+// .use(httpErrorHandler())
+// .use(validator({ eventSchema: transpileSchema(uploadAuctionPictureSchema) }))
+// .use(cors());

@@ -1,3 +1,5 @@
+'use strict';
+
 const { v4: uuidv4 } = require('uuid');
 const AWS = require('aws-sdk');
 const createError = require('http-errors');

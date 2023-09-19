@@ -2,6 +2,12 @@ AuctionsBucket:
   Type: AWS::S3::Bucket
   Properties:
     BucketName: ${self:custom.AuctionsBucket.name}
+    # Granting public access to bucket
+    PublicAccessBlockConfiguration:
+      BlockPublicAcls: false
+      BlockPublicPolicy: false
+      IgnorePublicAcls: false
+      RestrictPublicBuckets: false
     LifecycleConfiguration:
       Rules:
         - Id: ExpirePictures # Optional expiry policy for all pictures uploaded to this Bucket
@@ -14,6 +20,7 @@ AuctionsBucketPolicy:
     Bucket:
       Ref: AuctionsBucket
     PolicyDocument:
+      Version: "2012-10-17"
       Statement:
         - Sid: PublicRead
           Effect: Allow
@@ -21,3 +28,9 @@ AuctionsBucketPolicy:
           Action:
             - s3:GetObject
           Resource: arn:aws:s3:::${self:custom.AuctionsBucket.name}/*
+        # - Sid: AllowPutBucketPolicy
+        #   Effect: Allow
+        #   Principal: '*'
+        #   Action:
+        #     - s3:PutBucketPolicy
+        #   Resource: arn:aws:s3:::${self:custom.AuctionsBucket.name}

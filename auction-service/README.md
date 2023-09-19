@@ -111,3 +111,5 @@ sls logs --function createAuction --tail
 npm i @middy/http-json-body-parser @middy/http-event-normalizer @middy/http-error-handler @middy/http-cors
 
 ### (6.) Authentication using Auth0
+
+npm install -D serverless-plugin-typescript typescript

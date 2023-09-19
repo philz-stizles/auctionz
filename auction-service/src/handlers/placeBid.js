@@ -1,3 +1,5 @@
+'use strict';
+
 const AWS = require('aws-sdk');
 const createError = require('http-errors');
 const commonMiddleware = require('../middlewares/commonMiddleware');

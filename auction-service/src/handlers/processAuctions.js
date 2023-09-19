@@ -1,3 +1,5 @@
+'use strict';
+
 const createError = require('http-errors');
 const { getEndedAuctions, closeAuction } = require('../lib/processAuctionsLib');
 
