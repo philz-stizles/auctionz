@@ -10,6 +10,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 const createAuction = async (event, context) => {
   // event.body | event.requestContext | event.queryStringParameters | event.pathParameters
+  // event.body | event.requestContext | event.queryStringParameters | event.pathParameters
   const { title } = event.body;
   const { email } = event.requestContext.authorizer;
 
