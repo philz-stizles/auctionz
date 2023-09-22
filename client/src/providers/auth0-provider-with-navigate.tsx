@@ -27,7 +27,7 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
       domain={auth0Domain}
       clientId={auth0ClientId}
       authorizationParams={{
-        redirect_uri: window.location.origin, // auth0CallbackUrl
+        redirect_uri: auth0CallbackUrl, // window.location.origin,
         audience: auth0Audience,
       }}
       onRedirectCallback={onRedirectCallback}
