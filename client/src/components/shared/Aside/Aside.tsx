@@ -33,7 +33,13 @@ const Aside = () => {
         <AsideItem to="/settings" icon={BiCog} />
       </ul>
       <div>
-        <IconButton size="lg" icon={BiLogOut} onClick={() => logout()} />
+        <IconButton
+          size="lg"
+          icon={BiLogOut}
+          onClick={() =>
+            logout({ logoutParams: { returnTo: window.location.origin } })
+          }
+        />
       </div>
     </aside>
   );
