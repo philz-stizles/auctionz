@@ -1,7 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 
 type Props = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   fluid?: boolean;
 };

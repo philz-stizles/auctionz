@@ -1,12 +1,20 @@
 # For full config options, check the docs:
 #    docs.serverless.com
 
-service: auth-service
+service: authorizer
 
 frameworkVersion: '^3.34.0'
 
+# Create an optimized package for our functions
+package:
+  individually: true
+
+plugins:
+  - serverless-bundle # Package our functions with Webpack
+
 provider:
   name: aws # serverless provider
+  deploymentMethod: direct
   runtime: nodejs18.x
   memorySize: 128 #
   stage: ${opt:stage, 'dev'} #
@@ -40,7 +48,7 @@ functions:
 
 resources:
   Resources:
-    # This response is needed for custom authorizer failures cors support ¯\_(ツ)_/¯
+    # This response is needed for custom authorizer failures cors support.
     GatewayResponse:
       Type: 'AWS::ApiGateway::GatewayResponse'
       Properties:

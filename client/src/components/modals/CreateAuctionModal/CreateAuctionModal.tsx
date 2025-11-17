@@ -34,7 +34,7 @@ const CreateAuctionModal = ({ isOpen, onClose }: ModalProps) => {
                 <label className="text-sm leading-loose">Title</label>
                 <input
                   type="text"
-                  className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                  className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-2xl focus:outline-none text-gray-600"
                   placeholder="Event title"
                   onChange={(e) => setTitle(e.target.value)}
                 />
@@ -43,7 +43,7 @@ const CreateAuctionModal = ({ isOpen, onClose }: ModalProps) => {
                 <label className="text-sm leading-loose">Description</label>
                 <textarea
                   rows={3}
-                  className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                  className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-2xl focus:outline-none text-gray-600"
                   placeholder="Optional"
                 ></textarea>
               </div>
@@ -52,8 +52,8 @@ const CreateAuctionModal = ({ isOpen, onClose }: ModalProps) => {
                   <label className="text-sm leading-loose">Start</label>
                   <div className="relative focus-within:text-gray-600 text-gray-400">
                     <input
-                      type="text"
-                      className="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                      type="date"
+                      className="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-2xl focus:outline-none text-gray-600"
                       placeholder="25/02/2020"
                     />
                     <div className="absolute left-3 top-1/2 -translate-y-1/2">
@@ -67,8 +67,8 @@ const CreateAuctionModal = ({ isOpen, onClose }: ModalProps) => {
                   </label>
                   <div className="relative focus-within:text-gray-600 text-gray-400">
                     <input
-                      type="text"
-                      className="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                      type="date"
+                      className="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-2xl focus:outline-none text-gray-600"
                       placeholder="26/02/2020"
                     />
                     <div className="absolute left-3 top-1/2 -translate-y-1/2">
@@ -81,7 +81,7 @@ const CreateAuctionModal = ({ isOpen, onClose }: ModalProps) => {
             <div className="pt-4 flex items-center space-x-4">
               <Button
                 disabled={isLoading}
-                variant="flat"
+                variant="outlined"
                 expanded
                 onClick={() => onClose()}
               >

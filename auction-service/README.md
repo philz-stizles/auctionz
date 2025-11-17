@@ -77,7 +77,7 @@ Deploy serverless stack:
 Deploy serverless function:
 
 ```bash
-  sls deploy --function createAuction --verbose
+  sls deploy function createAuction --verbose
 ```
 
 Remove serverless stack:
@@ -112,4 +112,8 @@ npm i @middy/http-json-body-parser @middy/http-event-normalizer @middy/http-erro
 
 ### (6.) Authentication using Auth0
 
-npm install -D serverless-plugin-typescript typescript
+"esbuild": "^0.14.25",
+    "serverless-esbuild": "^1.25.0"
+
+
+npm i --save-dev @types/node

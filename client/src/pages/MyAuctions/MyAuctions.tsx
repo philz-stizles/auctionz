@@ -1,4 +1,4 @@
-import { BiDirections, BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
+import { BiDirections, BiLeftArrowAlt, BiNetworkChart, BiRightArrowAlt } from 'react-icons/bi';
 import { AuctionCard } from '../../components/cards';
 import { Heading, IconButton } from '../../components/ui';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -11,7 +11,7 @@ import CreateAuctionModal from '../../components/modals/CreateAuctionModal/Creat
 const MyAuctions = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const { user } = useAuth0();
-  const { data: auctions, isLoading } = useFetch<{ id: string }[]>({
+  const { data: auctions, error, isLoading } = useFetch<{ id: string }[]>({
     init: [],
     endpoint: '/auctions',
     isAuth: true,
@@ -29,6 +29,15 @@ const MyAuctions = () => {
           <IconButton size="sm" icon={BiRightArrowAlt} />
         </div>
       </div>
+      {error && (
+        <div className="flex-1 flex justify-center items-center -translate-y-3.5 py-8">
+          <div className="flex flex-col justify-center items-center">
+            <BiNetworkChart size={32} />
+            <h3 className="font-semibold text-base">No Network</h3>
+            <p className="">Check your network connection.</p>
+          </div>
+        </div>
+      )}
       {isLoading ? (
         <div className="flex-1 flex justify-center items-center -translate-y-3.5 py-8">
           Loading ...

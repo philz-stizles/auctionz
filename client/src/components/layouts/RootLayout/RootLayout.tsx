@@ -4,7 +4,6 @@ import { Footer, Navbar } from '../../shared';
 const RootLayout = () => {
   return (
     <div>
-      <Navbar />
       <Outlet />
       <Footer />
     </div>

@@ -10,17 +10,22 @@ service: auction-service
 # Check out our docs for more details
 frameworkVersion: '^3.34.0'
 
+# Create an optimized package for our functions
+package:
+  individually: true
+
 plugins:
-  - serverless-plugin-typescript
+  - serverless-bundle # Package our functions with Webpack
 
 provider:
   name: aws # serverless provider
+  deploymentMethod: direct
   runtime: nodejs18.x
-  lambdaHashingVersion: 20201221
   memorySize: 256 #
   stage: ${opt:stage, 'dev'} #
   region: eu-west-2
   environment:
+    AWS_REGION_NAME: '${aws:region}'
     AUCTIONS_TABLE_NAME: ${self:custom.AuctionsTable.name}
     MAIL_QUEUE_URL: ${self:custom.MailQueue.url}
     AUCTIONS_BUCKET_NAME: ${self:custom.AuctionsBucket.name}
@@ -39,8 +44,8 @@ functions:
       - http:
           path: /auctions
           method: post
-          cors: true # configure cors on endpoint to be able to use from the front-end
           authorizer: ${self:custom.authorizer} # specify authorization middleware lambda function - using Function Arn
+          cors: true # configure cors on endpoint to be able to use from the front-end
   getAuctions:
     handler: src/handlers/getAuctions.handler
     events:
@@ -85,7 +90,7 @@ resources:
     AuctionsBucketPolicy: ${file(resources/AuctionsBucket.yml):AuctionsBucketPolicy}
 
 custom:
-  authorizer: arn:aws:lambda:${aws:region}:${aws:accountId}:function:auth-service-${self:provider.stage}-auth
+  authorizer: arn:aws:lambda:${aws:region}:${aws:accountId}:function:authorizer-${self:provider.stage}-auth
   AuctionsTable:
     name:
       Ref: AuctionsTable

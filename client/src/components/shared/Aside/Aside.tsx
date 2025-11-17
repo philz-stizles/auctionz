@@ -59,7 +59,7 @@ const AsideItem = ({
   return (
     <li
       className={twMerge(
-        'rounded-full p-1.5 transition m-0',
+        ' rounded-2xl p-1.5 transition m-0',
         isActive ? 'bg-slate-800 text-slate-100' : 'text-slate-500'
       )}
     >

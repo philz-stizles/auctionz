@@ -1,4 +1,3 @@
-import { BiRecycle } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
@@ -10,13 +9,20 @@ const Logo = ({ className }: Props) => {
   return (
     <Link
       to="/"
-      className={twMerge(
-        'rounded-md p-1 flex justify-center items-center bg-indigo-700 text-indigo-100 w-10 h-10',
-        className
-      )}
+      className={twMerge('logo text-2xl text-slate-50 font-semibold', className)}
     >
-      <BiRecycle size={24} />
+      Auctionz
     </Link>
+    // <Link
+    //   to="/"
+    //   className={twMerge(
+    //     'logo rounded-md p-1 flex justify-center items-center bg-indigo-700 text-indigo-100 w-10 h-10',
+    //     className
+    //   )}
+    // >
+
+    //   <BiRecycle size={24} />
+    // </Link>
   );
 };
 

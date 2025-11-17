@@ -8,7 +8,7 @@ const Navbar = () => {
   console.log(user);
   return (
     <nav className="py-4">
-      <Container fluid className="flex justify-between items-center">
+      <Container className="flex justify-between items-center">
         <Logo />
         <ul className='flex items-center gap-8 font-medium'>
           <li>

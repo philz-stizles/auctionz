@@ -3,14 +3,24 @@
   "description": "## Table of Contents",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "serverless-bundle test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-lambda": "^1.0.7",
+    "http-errors": "^2.0.0",
     "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.122",
+    "@types/http-errors": "^2.0.2",
+    "@types/jest": "^29.5.5",
+    "@types/jsonwebtoken": "^9.0.3",
+    "serverless-bundle": "^6.0.0",
+    "serverless-offline": "^13.0.0",
+    "typescript": "^4.4.2"
   }
 }
